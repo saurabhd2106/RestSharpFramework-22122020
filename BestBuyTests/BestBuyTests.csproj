@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,9 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Tests\" />
     <Folder Include="TestData\" />
     <Folder Include="Reports\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BestBuyApp\BestBuyApp.csproj" />
+    <ProjectReference Include="..\CommonLibs\CommonLibs.csproj" />
   </ItemGroup>
 
 </Project>
