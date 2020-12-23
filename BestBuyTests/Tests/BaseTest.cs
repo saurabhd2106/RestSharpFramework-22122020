@@ -1,6 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using BestBuyApp.ProductRequests;
 using CommonLibs.Utils;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace BestBuyTests.Tests
 
         public static ExtentReportsUtils ExtentReportUtils;
 
+        public static IConfiguration Configuration;
+
         public TestContext TestContext { get; set; }
 
         [AssemblyInitialize]
@@ -44,7 +47,10 @@ namespace BestBuyTests.Tests
             string htmlReportFilename = $"{CurrentProjectDirectory}/Reports/Test.html";
             
             ExtentReportUtils = new ExtentReportsUtils(htmlReportFilename);
-            
+
+            Configuration = new ConfigurationBuilder().AddJsonFile(CurrentProjectDirectory + "/Config/appSettings.json").Build();
+
+
 
         }
 
@@ -62,7 +68,7 @@ namespace BestBuyTests.Tests
         {
             ExtentReportUtils.CreateTestcase("Setup");
 
-            EnpointUrl = "http://ec2-3-129-89-35.us-east-2.compute.amazonaws.com:3030";
+            EnpointUrl = $"{Configuration["environment:server"]}:{Configuration["environment:portNumber"]}";
 
             ProductResource = "products";
 
