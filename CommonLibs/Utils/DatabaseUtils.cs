@@ -25,7 +25,29 @@ namespace CommonLibs.Utils
                 UserID = userId,
                 Password = password,
                 InitialCatalog = dbName
+
             };
+
+            builder.IntegratedSecurity = true;
+
+            connection = new SqlConnection(builder.ConnectionString);
+
+            connection.Open();
+
+        }
+
+        public void CreateConnection(string datasource, string userId, string dbName)
+        {
+
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder()
+            {
+                DataSource = datasource,
+                UserID = userId,
+                IntegratedSecurity = true,
+                InitialCatalog = dbName
+
+            };
+
 
             connection = new SqlConnection(builder.ConnectionString);
 
