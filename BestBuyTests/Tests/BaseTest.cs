@@ -80,7 +80,12 @@ namespace BestBuyTests.Tests
 
             //Establish a Database connection;
 
-            DatabaseUtils.CreateConnection();
+            string dataSource = Configuration["dataBase:dataSource"];
+            string userId = Configuration["dataBase:userId"];
+            string password = Configuration["dataBase:password"];
+            string dbName = Configuration["dataBase:dbName"];
+
+            DatabaseUtils.CreateConnection(dataSource,userId,password, dbName);
         }
 
         [TestCleanup]

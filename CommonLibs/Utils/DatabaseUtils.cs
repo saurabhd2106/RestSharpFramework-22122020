@@ -16,15 +16,15 @@ namespace CommonLibs.Utils
 
         private SqlConnection connection;
 
-        public void CreateConnection()
+        public void CreateConnection(string datasource, string userId, string password, string dbName)
         {
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder()
             {
-                DataSource = "localhost",
-                UserID = "saurabh",
-                Password = "admin@1234",
-                InitialCatalog = "TestComplete"
+                DataSource = datasource,
+                UserID = userId,
+                Password = password,
+                InitialCatalog = dbName
             };
 
             connection = new SqlConnection(builder.ConnectionString);
