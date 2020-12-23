@@ -1,4 +1,5 @@
-﻿using BestBuyAPITest.Model;
+﻿using AventStack.ExtentReports;
+using BestBuyAPITest.Model;
 using BestBuyTests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
@@ -16,8 +17,13 @@ namespace BestBuyTests.Tests
         [TestMethod]
         public void VerifyGetAPITestWithQueryParamAndDeserializeResponse()
         {
+            ExtentReportUtils.CreateTestcase("TC-1 - Verify Get API Test with Query Parameter");
+            Console.WriteLine("Test case 1");
             //Prepare the test data
             int limit = 2;
+
+            ExtentReportUtils.Log(Status.Info, $"Query parameter uses is limit and the value is {limit}");
+
 
             Dictionary<string, object> queryParameters = new Dictionary<string, object>();
 
@@ -28,7 +34,7 @@ namespace BestBuyTests.Tests
 
             restResponse = requestFactory.GetAllProduct(ProductEndPointUrl, queryParameters);
 
-            StatusCode.VerifySuccessStatusCode(restResponse);
+            StatusCode.VerifyNotFoundStatusCode(restResponse);
 
             Assert.AreEqual(limit, restResponse.Data.limit);
 
@@ -38,7 +44,7 @@ namespace BestBuyTests.Tests
         [TestMethod]
         public void VerifyGetAPITestAndDeserializeResponse()
         {
-            
+            ExtentReportUtils.CreateTestcase("TC-2 - Verify Get All API Test and Deserialize Response");
             //Send the call and get the response
             IRestResponse<RootProductDto> restResponse;
 
@@ -55,6 +61,8 @@ namespace BestBuyTests.Tests
         [TestMethod]
         public void VerifyPostAPITestWithStringRequestPayload()
         {
+
+            ExtentReportUtils.CreateTestcase("TC-2 - Verify Post API Test With String Request Payload");
 
             //Send the call and get the response
             IRestResponse<RootProductDto> restResponse;
