@@ -34,6 +34,8 @@ namespace BestBuyTests.Tests
 
         public TestContext TestContext { get; set; }
 
+        public static DatabaseUtils DatabaseUtils { get; set; }
+
         [AssemblyInitialize]
         public static void OneTimeSetup(TestContext TestContext)
         {
@@ -50,8 +52,7 @@ namespace BestBuyTests.Tests
 
             Configuration = new ConfigurationBuilder().AddJsonFile(CurrentProjectDirectory + "/Config/appSettings.json").Build();
 
-
-
+           
         }
 
         [ClassInitialize(InheritanceBehavior.BeforeEachDerivedClass)]
@@ -60,7 +61,7 @@ namespace BestBuyTests.Tests
 
             Console.WriteLine("Pre Setup");
 
-
+            DatabaseUtils = new DatabaseUtils();
         }
 
         [TestInitialize]
@@ -76,6 +77,10 @@ namespace BestBuyTests.Tests
 
             ExtentReportUtils.Log(Status.Info, $"Product Enpoint URL - {ProductEndPointUrl} ");
             requestFactory = new RequestFactory();
+
+            //Establish a Database connection;
+
+            DatabaseUtils.CreateConnection();
         }
 
         [TestCleanup]
@@ -93,7 +98,7 @@ namespace BestBuyTests.Tests
                 ExtentReportUtils.Log(Status.Skip, "Test Aborted");
             }
 
-
+            DatabaseUtils.CloseConnection();
         }
 
 
