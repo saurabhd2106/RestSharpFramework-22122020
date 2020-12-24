@@ -28,8 +28,6 @@ namespace CommonLibs.Utils
 
             };
 
-            builder.IntegratedSecurity = true;
-
             Console.WriteLine(builder.ConnectionString);
 
             connection = new SqlConnection(builder.ConnectionString);
