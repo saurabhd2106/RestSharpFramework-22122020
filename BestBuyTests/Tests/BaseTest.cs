@@ -90,7 +90,7 @@ namespace BestBuyTests.Tests
             string password = Configuration["dataBase:password"];
             string dbName = Configuration["dataBase:dbName"];
 
-            DatabaseUtils.CreateConnection(dataSource,userId, dbName);
+            DatabaseUtils.CreateConnection(dataSource,userId, password, dbName);
         }
 
         [TestCleanup]
