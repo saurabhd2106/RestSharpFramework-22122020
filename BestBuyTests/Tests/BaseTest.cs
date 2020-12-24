@@ -32,6 +32,8 @@ namespace BestBuyTests.Tests
 
         public static IConfiguration Configuration;
 
+        private static string testExecutionStartTime;
+
         public TestContext TestContext { get; set; }
 
         public static DatabaseUtils DatabaseUtils { get; set; }
@@ -46,7 +48,10 @@ namespace BestBuyTests.Tests
 
             CurrentSolutionDirectory = Directory.GetParent(CurrentWorkingDirectory).Parent.Parent.Parent.FullName;
 
-            string htmlReportFilename = $"{CurrentProjectDirectory}/Reports/Test.html";
+            testExecutionStartTime = DateTime.Now.ToString("MM-dd-yyyy-HH-mm-ss");
+
+
+            string htmlReportFilename = $"{CurrentProjectDirectory}/Reports/{testExecutionStartTime}/Test.html";
             
             ExtentReportUtils = new ExtentReportsUtils(htmlReportFilename);
 
