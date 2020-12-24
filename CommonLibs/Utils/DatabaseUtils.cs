@@ -38,6 +38,7 @@ namespace CommonLibs.Utils
 
         public void CreateConnection(string datasource, string userId, string dbName)
         {
+            Console.WriteLine($"{datasource}:{userId}:{dbName}");
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder()
             {
